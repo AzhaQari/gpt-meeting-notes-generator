@@ -16,19 +16,27 @@ This application generates clean, structured meeting notes from audio recordings
 How to Run:
 1. Clone & Install
 git clone https://github.com/your-username/gpt-meeting-notes-generator
+
 cd gpt-meeting-notes-generator
+
+*make sure to add .env file with your OpenAI API key!
+
 
 # Terminal 1 - Backend
 cd server
+
 node index.js
 
 # Terminal 2 - Frontend
 cd client
+
 npm run dev
+
 Visit http://localhost:5173
 
 
-Tech Stack
+# Tech Stack
+
 React + Vite
 
 Node.js / Express
