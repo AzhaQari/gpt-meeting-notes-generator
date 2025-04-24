@@ -19,7 +19,7 @@ git clone https://github.com/your-username/gpt-meeting-notes-generator
 
 cd gpt-meeting-notes-generator
 
-*make sure to add .env file with your OpenAI API key!
+*make sure to add .env file with your OpenAI API key! (inside /server folder)
 
 
 # Terminal 1 - Backend
