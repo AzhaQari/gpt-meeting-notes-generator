@@ -1,4 +1,4 @@
-Effortlessly generate clean, structured meeting notes from audio recordings using OpenAI Whisper and GPT-3.5.
+This application generates clean, structured meeting notes from audio recordings using OpenAI Whisper and GPT-3.5.
 
  Features:
  Upload meeting audio (MP3, WAV, etc.)
