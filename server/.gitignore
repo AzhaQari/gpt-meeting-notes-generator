@@ -1,0 +1,12 @@
+# Node modules and logs
+node_modules/
+uploads/
+.env
+
+# Build artifacts
+dist/
+build/
+
+# OS metadata
+.DS_Store
+Thumbs.db
