@@ -18,25 +18,6 @@ How to Run:
 git clone https://github.com/your-username/gpt-meeting-notes-generator
 cd gpt-meeting-notes-generator
 
-# Backend
-cd server
-npm install
-
-# Frontend
-cd ../client
-npm install
-2. Add API Key
-Create a .env file in server/:
-
-ini
-Copy
-Edit
-OPENAI_API_KEY=your_openai_key
-PORT=3001
-3. Run the App
-bash
-Copy
-Edit
 # Terminal 1 - Backend
 cd server
 node index.js
@@ -45,7 +26,6 @@ node index.js
 cd client
 npm run dev
 Visit http://localhost:5173
-
 
 
 Tech Stack
