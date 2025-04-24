@@ -1,12 +1,13 @@
-# Node modules and logs
+# Node
 node_modules/
 uploads/
 .env
 
-# Build artifacts
-dist/
-build/
+# Vite/React builds
+client/dist/
+client/.vite/
 
-# OS metadata
+# OS/IDE
 .DS_Store
 Thumbs.db
+.vscode/
