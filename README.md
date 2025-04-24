@@ -15,9 +15,6 @@ This application generates clean, structured meeting notes from audio recordings
 
 How to Run:
 1. Clone & Install
-bash
-Copy
-Edit
 git clone https://github.com/your-username/gpt-meeting-notes-generator
 cd gpt-meeting-notes-generator
 
