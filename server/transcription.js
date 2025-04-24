@@ -54,7 +54,7 @@ async function generateMeetingNotes(transcript) {
           content: `Here is the transcript of the meeting:\n\n${transcript}`,
         },
       ],
-      max_tokens: 10000, // Control output length (adjust based on your needs)
+      max_tokens: 4096, // Control output length (adjust based on your needs)
     });
 
     return response.choices[0].message.content; // Extract the generated notes
