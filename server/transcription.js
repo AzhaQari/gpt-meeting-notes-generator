@@ -1,5 +1,5 @@
 const fs = require('fs'); // module for reading audio files
-const { OpenAI } = require('openai'); // OpenAI library for API calls 
+const { OpenAI } = require('openai'); // OpenAI library for API calls - whisper and GPT
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY }); // initialize openai client w my key
 
@@ -36,7 +36,7 @@ async function transcribeAudio(filePath) {
 async function generateMeetingNotes(transcript) {
   try {
     const response = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo', // Use GPT-3.5 or GPT-4 depending on your needs
+      model: 'gpt-3.5-turbo', // using this for reliable output and cheaper cost relative to gpt-4
       messages: [
         {
           role: 'system',
@@ -54,7 +54,7 @@ async function generateMeetingNotes(transcript) {
           content: `Here is the transcript of the meeting:\n\n${transcript}`,
         },
       ],
-      max_tokens: 4096, // Control output length (adjust based on your needs)
+      max_tokens: 4096, // sets output length to max length of 4096 tokens
     });
 
     return response.choices[0].message.content; // Extract the generated notes
@@ -64,5 +64,5 @@ async function generateMeetingNotes(transcript) {
   }
 }
 
-// Export both functions for use in the Express server
+// exports both functions for use in index.js (the Express server)
 module.exports = { transcribeAudio, generateMeetingNotes };

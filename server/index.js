@@ -1,30 +1,28 @@
-require('dotenv').config(); // Loads environment variables from .env
-const express = require('express'); // Web framework
-const multer = require('multer'); // Middleware to handle multipart/form-data (like audio files)
-const cors = require('cors'); // Allows cross-origin requests from frontend
-const path = require('path'); // Utility module for working with file paths
-const { transcribeAudio, generateMeetingNotes } = require('./transcription'); // Import functions
+require('dotenv').config(); // loads env variables from .env
+const express = require('express'); // imports web framwork modules
+const multer = require('multer'); // middleware to handle the mp3/audio files
+const cors = require('cors'); // allows frontend to access backend 
+const path = require('path'); // module for working with file paths
+const { transcribeAudio, generateMeetingNotes } = require('./transcription'); // loads transcribeAudio() and generateMeetingNotes() from transcription.js
 
-const app = express(); // Initialize Express application
-const upload = multer({ dest: 'uploads/' }); // Configure Multer to save uploads to /uploads
+const app = express(); // initializes Express app
+const upload = multer({ dest: 'uploads/' }); // use multer to store uploaded audio to the uploads/ folder
 
-// Enable CORS and JSON parsing middleware
-app.use(cors());
-app.use(express.json());
 
-/**
- * Route: POST /transcribe
- * Description: Handles audio upload, transcribes it, and generates GPT-powered meeting notes
- */
+app.use(cors());  // enables CORS in the app to allow frontend to talk to backend
+app.use(express.json()); // enables the app to parse incoming JSON requests (POST bodies)
+
+
+// this POST route handles the audio file upload and transcription
 app.post('/transcribe', upload.single('audio'), async (req, res) => {
   try {
-    console.log('📁 Uploaded File Info:', req.file); // 👈 Add this line
+    console.log('Uploaded File Info:', req.file); // used to debug/check file info
 
-    const filePath = req.file.path;
-    const transcript = await transcribeAudio(filePath);
-    const notes = await generateMeetingNotes(transcript);
+    const filePath = req.file.path; // path to the uploaded file
+    const transcript = await transcribeAudio(filePath); // calls transcribeAudio() and saves the result to transcript
+    const notes = await generateMeetingNotes(transcript); // calls generateMeetingNotes() and saves the result to notes
 
-    res.json({ transcript, notes });
+    res.json({ transcript, notes });  // sends json back to frontend with the transcript and notes
   } catch (error) {
     console.error('Error handling transcription:', error);
     res.status(500).json({ error: 'Transcription and note generation failed' });
@@ -35,5 +33,5 @@ app.post('/transcribe', upload.single('audio'), async (req, res) => {
 // Start the backend server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`🟢 Server listening on http://localhost:${PORT}`);
+  console.log(`Server listening on http://localhost:${PORT}`);
 });
